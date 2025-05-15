@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "dev": "moon :dev",
-    "build": "moon :build",
+    "build": "pnpm -rf build",
     "preview": "moon :preview",
     "lint": "moon :lint",
     "format": "moon :format",

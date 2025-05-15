@@ -2,12 +2,11 @@ import React from 'react';
 
 interface TileProps {
   dimensions: { width: number; height: number };
-  imageUrl: string;
   label: string;
   onClick?: () => void;
 }
 
-export const Tile: React.FC<TileProps> = ({ dimensions, imageUrl, label, onClick }) => {
+export const Tile: React.FC<TileProps> = ({ dimensions, label, onClick }) => {
   const tileStyles: React.CSSProperties = {
     borderRadius: '10px' as const,
     background: 'var(--theme-primary)',
@@ -23,12 +22,12 @@ export const Tile: React.FC<TileProps> = ({ dimensions, imageUrl, label, onClick
     cursor: onClick ? 'pointer' : ('default' as const),
   } as React.CSSProperties;
 
-  const imageStyles: React.CSSProperties = {
-    width: '100%' as const,
-    height: 'auto' as const,
-    borderRadius: '8px' as const,
-    marginBottom: '8px' as const,
-  };
+  // const imageStyles: React.CSSProperties = {
+  //   width: '100%' as const,
+  //   height: 'auto' as const,
+  //   borderRadius: '8px' as const,
+  //   marginBottom: '8px' as const,
+  // };
 
   const labelStyles: React.CSSProperties = {
     color: 'var(--text-primary)' as const,
