@@ -12,7 +12,7 @@ export const Tile: React.FC<TileProps> = ({ dimensions, imageUrl, label, onClick
     borderRadius: '10px' as const,
     background: 'var(--theme-primary)',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' as const,
-    transition: 'transform 0.2s ease-in-out' as const,
+    transition: 'transform 0.2s ease-in-out, background-color 0.2s ease-in-out' as const,
     width: `${dimensions.width}px` as const,
     height: `${dimensions.height}px` as const,
     display: 'flex' as const,
@@ -21,7 +21,7 @@ export const Tile: React.FC<TileProps> = ({ dimensions, imageUrl, label, onClick
     justifyContent: 'center' as const,
     padding: '16px' as const,
     cursor: onClick ? 'pointer' : ('default' as const),
-  };
+  } as React.CSSProperties;
 
   const imageStyles: React.CSSProperties = {
     width: '100%' as const,
@@ -38,8 +38,8 @@ export const Tile: React.FC<TileProps> = ({ dimensions, imageUrl, label, onClick
   };
 
   return (
-    <div style={tileStyles} onClick={onClick}>
-      <img src={imageUrl} alt={label} style={imageStyles} />
+    <div className="tile" style={tileStyles} onClick={onClick}>
+      {/* <img src={imageUrl} alt={label} style={imageStyles} /> */}
       <div style={labelStyles}>{label}</div>
     </div>
   );

@@ -30,7 +30,7 @@ const tileConfigs: TileConfig[] = [
     id: '1',
     label: 'Start',
     position: { x: 2, y: 0 },
-    connections: ['2', '3'],
+    connections: ['2'],
   },
   // Row 2
   {
@@ -43,7 +43,7 @@ const tileConfigs: TileConfig[] = [
     id: '3',
     label: 'Discover',
     position: { x: 3, y: 1 },
-    connections: ['6'],
+    connections: ['7'],
   },
   {
     id: '4',
@@ -74,7 +74,7 @@ const tileConfigs: TileConfig[] = [
     id: '8',
     label: 'Grow',
     position: { x: 5, y: 2 },
-    connections: ['10'],
+    connections: ['7'],
   },
   // Row 4
   {
@@ -170,17 +170,23 @@ export function OrganicTileGrid() {
   );
 
   const getLinePath = useCallback(
-    (startId: string, endId: string) => {
-      const start = getTilePosition(startId);
-      const end = getTilePosition(endId);
-      const midX = (start.x + end.x) / 2;
-      const midY = (start.y + end.y) / 2;
+    (fromId: string, toId: string) => {
+      const fromPos = getTilePosition(fromId);
+      const toPos = getTilePosition(toId);
 
-      // Add some curve variation
-      const curveX = 50;
-      const curveY = 50;
+      // Calculate the direction of the line
+      const isVertical = Math.abs(toPos.x - fromPos.x) < Math.abs(toPos.y - fromPos.y);
 
-      return `M${start.x},${start.y} Q${midX + curveX},${midY + curveY} ${end.x},${end.y}`;
+      // Create a straight line with 90-degree bends
+      if (isVertical) {
+        // Vertical line with horizontal bend
+        const bendX = Math.min(fromPos.x, toPos.x);
+        return `M ${fromPos.x} ${fromPos.y} H ${bendX} V ${toPos.y} H ${toPos.x}`;
+      } else {
+        // Horizontal line with vertical bend
+        const bendY = Math.min(fromPos.y, toPos.y);
+        return `M ${fromPos.x} ${fromPos.y} V ${bendY} H ${toPos.x} V ${toPos.y}`;
+      }
     },
     [getTilePosition]
   );
@@ -188,8 +194,8 @@ export function OrganicTileGrid() {
   return (
     <div
       ref={containerRef}
-      className="relative w-half overflow-hidden m-4"
-      style={{ aspectRatio: '1', height: 'auto' }}
+      className="relative overflow-hidden m-4"
+      style={{ aspectRatio: '1', height: 'auto', width: '40%' }}
     >
       {/* SVG Container */}
       <svg viewBox={`0 0 ${containerDimensions?.width} ${containerDimensions?.height}`}>
