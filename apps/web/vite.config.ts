@@ -10,6 +10,7 @@ export default defineConfig({
       projects: ['tsconfig.json'],
     }),
   ],
+  css: {},
   server: {
     port: 3000,
     open: true,

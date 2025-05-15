@@ -44,24 +44,22 @@ export function Header({ className = '' }: HeaderProps) {
   return (
     <header className={`header ${className}`}>
       <div className="header-container">
-        <div className="header-content flex items-center justify-between">
-          <Logo />
-          <Navigation />
-          <div className="flex items-center">
-            <UserProfile
-              isAuthenticated={isAuthenticated}
-              user={{
-                name: 'John Doe',
-                email: 'john@example.com',
-                avatar:
-                  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-              }}
-              onLogin={handleLogin}
-              onSignup={handleSignup}
-              onLogout={handleLogout}
-              onProfileClick={handleProfileClick}
-            />
-          </div>
+        <Logo />
+        <Navigation />
+        <div className="d-flex items-center">
+          <UserProfile
+            isAuthenticated={isAuthenticated}
+            user={{
+              name: 'John Doe',
+              email: 'john@example.com',
+              avatar:
+                'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            }}
+            onLogin={handleLogin}
+            onSignup={handleSignup}
+            onLogout={handleLogout}
+            onProfileClick={handleProfileClick}
+          />
         </div>
       </div>
     </header>

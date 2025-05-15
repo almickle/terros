@@ -1,27 +1,13 @@
-// Import UX package styles
-@use '@terros/ux/styles' as ux;
-
-// Use the theme variables from the UX package
-:root {
-  // Colors
-  --primary-color: var(--color-primary-500);
-  --primary-hover: var(--color-primary-600);
-  --text-color: var(--color-text);
-  --bg-color: var(--color-background);
-  --border-color: var(--color-border);
-  --shadow: var(--shadow-md);
-}
-
-// Base styles are already included from the UX package
-// We'll just add our component-specific styles below
+// Import UX package variables and mixins
+@use '@terros/ux' as ux;
 
 // Layout
 .app-layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-background);
-  color: var(--color-text);
+  background-color: var(--theme-background);
+  color: var(--theme-text);
 }
 
 .app-content {
@@ -34,7 +20,7 @@
   margin: 0 auto;
   padding: 2rem 1.5rem;
   width: 100%;
-  background-color: var(--color-background);
+  background-color: var(--theme-background);
 }
 
 // Header
@@ -44,31 +30,20 @@
   left: 0;
   right: 0;
   height: 4rem;
-  background-color: var(--color-background-alt);
-  box-shadow: var(--shadow-sm);
   z-index: 10;
   border-bottom: 1px solid var(--color-border);
+  background-color: var(--theme-background);
 }
 
 .header-container {
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   height: 100%;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-}
-
-.header-left,
-.header-right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  background-color: inherit;
 }
 
 // Navigation links (for future use)
@@ -76,7 +51,7 @@
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
-  color: var(--color-text-secondary);
+  color: var(--theme-text-secondary);
   text-decoration: none;
   border-radius: var(--radius-md);
   transition: all 0.2s ease;

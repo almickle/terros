@@ -59,18 +59,18 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   return (
     <ThemeContext.Provider value={contextValue}>
       <div
-        className='min-h-screen'
+        className="min-h-screen theme-provider"
         style={
           {
-            '--color-primary-500': theme.colors.primary,
-            '--color-success-500': theme.colors.success,
-            '--color-warning-500': theme.colors.warning,
-            '--color-danger-500': theme.colors.danger,
-            '--color-info-500': theme.colors.info,
-            '--color-text': theme.colors.text.primary,
-            '--color-text-muted': theme.colors.text.secondary,
-            '--color-background': theme.colors.background.default,
-            '--color-background-paper': theme.colors.background.paper,
+            '--theme-primary': theme.colors.primary,
+            '--theme-success': theme.colors.success,
+            '--theme-warning': theme.colors.warning,
+            '--theme-danger': theme.colors.danger,
+            '--theme-info': theme.colors.info,
+            '--theme-text': theme.colors.text.primary,
+            '--theme-text-secondary': theme.colors.text.secondary,
+            '--theme-background': theme.colors.background.default,
+            '--theme-background-paper': theme.colors.background.paper,
           } as React.CSSProperties
         }
       >

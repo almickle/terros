@@ -4,8 +4,13 @@
   "description": "Terros Design System - SCSS Utilities and Components",
   "type": "module",
   "exports": {
+    ".": {
+      "sass": "./src/styles/index.scss",
+      "css": "./dist/terros-ux.css"
+    },
     "./package.json": "./package.json",
     "./styles": "./dist/terros-ux.css",
+    "./styles/dist/terros-ux.css": "./dist/terros-ux.css",
     "./scss": "./src/styles/index.scss"
   },
   "style": "dist/terros-ux.css",
