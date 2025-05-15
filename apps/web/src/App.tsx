@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
 
 import { ThemeProvider as UIThemeProvider, lightTheme, darkTheme } from '@terros/ui';
+import { Analytics } from '@vercel/analytics/next';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { Layout } from '@/components';
@@ -61,6 +62,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <ThemeContext.Provider value={contextValue}>
       <UIThemeProvider theme={currentTheme}>{children}</UIThemeProvider>
+      <Analytics />
     </ThemeContext.Provider>
   );
 }
