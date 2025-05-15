@@ -24,6 +24,23 @@
   display: none !important;
 }
 
+// Size utilities
+.w-full {
+  width: 100% !important;
+}
+
+.h-full {
+  height: 100% !important;
+}
+
+.w-half {
+  width: 50% !important;
+}
+
+.h-half {
+  height: 50% !important;
+}
+
 // Text alignment
 .text-left {
   text-align: left !important;
@@ -114,19 +131,19 @@
 }
 
 // Position utilities
-.position-static {
+.static {
   position: static !important;
 }
-.position-relative {
+.relative {
   position: relative !important;
 }
-.position-absolute {
+.absolute {
   position: absolute !important;
 }
-.position-fixed {
+.fixed {
   position: fixed !important;
 }
-.position-sticky {
+.sticky {
   position: sticky !important;
 }
 

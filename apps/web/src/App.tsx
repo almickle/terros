@@ -28,7 +28,7 @@ export const useTheme = () => {
 // Custom theme provider that handles theme persistence and switching
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<'light' | 'dark'>(
-    () => (localStorage.getItem('theme') as 'light' | 'dark') || 'light'
+    () => (localStorage.getItem('theme') as 'light' | 'dark') || 'dark'
   );
 
   const setTheme = useCallback((theme: 'light' | 'dark') => {

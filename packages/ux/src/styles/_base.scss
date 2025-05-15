@@ -305,60 +305,79 @@ textarea {
 
 // Flex utilities
 .flex-row {
+  display: flex !important;
   flex-direction: row !important;
 }
 .flex-column {
+  display: flex !important;
   flex-direction: column !important;
 }
 .flex-wrap {
+  display: flex !important;
   flex-wrap: wrap !important;
 }
 .flex-nowrap {
+  display: flex !important;
   flex-wrap: nowrap !important;
 }
 .items-start {
+  display: flex !important;
   align-items: flex-start !important;
 }
 .items-end {
+  display: flex !important;
   align-items: flex-end !important;
 }
 .items-center {
+  display: flex !important;
   align-items: center !important;
 }
 .items-baseline {
+  display: flex !important;
   align-items: baseline !important;
 }
 .items-stretch {
+  display: flex !important;
   align-items: stretch !important;
 }
 .justify-start {
+  display: flex !important;
   justify-content: flex-start !important;
 }
 .justify-end {
+  display: flex !important;
   justify-content: flex-end !important;
 }
 .justify-center {
+  display: flex !important;
   justify-content: center !important;
 }
 .justify-between {
+  display: flex !important;
   justify-content: space-between !important;
 }
 .justify-around {
+  display: flex !important;
   justify-content: space-around !important;
 }
-.justify-evenly {
+.justify-evenly { 
+  display: flex !important;
   justify-content: space-evenly !important;
 }
 .flex-1 {
+  display: flex !important;
   flex: 1 1 0% !important;
 }
 .flex-auto {
+  display: flex !important;
   flex: 1 1 auto !important;
 }
 .flex-initial {
+  display: flex !important;
   flex: 0 1 auto !important;
 }
 .flex-none {
+  display: flex !important;
   flex: none !important;
 }
 

@@ -16,11 +16,11 @@
     "lint": "moon :lint",
     "format": "moon :format",
     "type-check": "moon :type-check",
-    "ui:dev": "cd packages/ui/examples && pnpm dev",
-    "ui:build": "cd packages/ui/examples && pnpm build",
-    "ui:preview": "cd packages/ui/examples && pnpm preview",
-    "ui:type-check": "cd packages/ui/examples && pnpm type-check",
-    "ui:lint": "cd packages/ui/examples && pnpm lint"
+    "ui:dev": "pnpm --filter @terros/web run dev && pnpm --filter @terros/ui/examples run dev",
+    "ui:build": "pnpm --filter @terros/ui/examples run build",
+    "ui:preview": "pnpm --filter @terros/ui/examples run preview",
+    "ui:type-check": "pnpm --filter @terros/ui/examples run type-check",
+    "ui:lint": "pnpm --filter @terros/ui/examples run lint"
   },
   "devDependencies": {
     "@moonrepo/cli": "^1.22.5",
