@@ -1,0 +1,65 @@
+/* Base styles and theme transitions */
+:root {
+  --transition-duration: 0.3s;
+  --transition-timing: ease;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Smooth theme transitions */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: 
+    background-color var(--transition-duration) var(--transition-timing),
+    border-color var(--transition-duration) var(--transition-timing),
+    color var(--transition-duration) var(--transition-timing);
+}
+
+/* Ensure proper background and text colors */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Style links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Add some spacing utilities */
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

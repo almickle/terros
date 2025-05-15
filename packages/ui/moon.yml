@@ -1,0 +1,4 @@
+type: 'library'
+language: 'typescript'
+dependsOn:
+  - 'ux'

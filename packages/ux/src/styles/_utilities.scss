@@ -1,0 +1,165 @@
+// Utility Classes
+// Helper classes for common styling needs
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Display utilities
+.d-block {
+  display: block !important;
+}
+.d-inline {
+  display: inline !important;
+}
+.d-inline-block {
+  display: inline-block !important;
+}
+.d-flex {
+  display: flex !important;
+}
+.d-inline-flex {
+  display: inline-flex !important;
+}
+.d-none {
+  display: none !important;
+}
+
+// Text alignment
+.text-left {
+  text-align: left !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-justify {
+  text-align: justify !important;
+}
+
+// Text transformation
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+// Font weight
+.font-light {
+  font-weight: 300 !important;
+}
+.font-normal {
+  font-weight: 400 !important;
+}
+.font-medium {
+  font-weight: 500 !important;
+}
+.font-semibold {
+  font-weight: 600 !important;
+}
+.font-bold {
+  font-weight: 700 !important;
+}
+
+// Text overflow
+.text-truncate {
+  @include text-ellipsis;
+}
+
+// Visibility
+.visible {
+  visibility: visible !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+
+// Cursors
+.cursor-pointer {
+  cursor: pointer !important;
+}
+.cursor-default {
+  cursor: default !important;
+}
+.cursor-move {
+  cursor: move !important;
+}
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+// Overflow
+.overflow-auto {
+  overflow: auto !important;
+}
+.overflow-hidden {
+  overflow: hidden !important;
+}
+.overflow-visible {
+  overflow: visible !important;
+}
+.overflow-scroll {
+  overflow: scroll !important;
+}
+.overflow-x-auto {
+  overflow-x: auto !important;
+}
+.overflow-y-auto {
+  overflow-y: auto !important;
+}
+
+// Position utilities
+.position-static {
+  position: static !important;
+}
+.position-relative {
+  position: relative !important;
+}
+.position-absolute {
+  position: absolute !important;
+}
+.position-fixed {
+  position: fixed !important;
+}
+.position-sticky {
+  position: sticky !important;
+}
+
+// Responsive utilities
+@each $breakpoint, $value in $breakpoints {
+  @include respond-to($breakpoint) {
+    .d-#{$breakpoint}-none {
+      display: none !important;
+    }
+    .d-#{$breakpoint}-inline {
+      display: inline !important;
+    }
+    .d-#{$breakpoint}-inline-block {
+      display: inline-block !important;
+    }
+    .d-#{$breakpoint}-block {
+      display: block !important;
+    }
+    .d-#{$breakpoint}-flex {
+      display: flex !important;
+    }
+    .d-#{$breakpoint}-inline-flex {
+      display: inline-flex !important;
+    }
+
+    .text-#{$breakpoint}-left {
+      text-align: left !important;
+    }
+    .text-#{$breakpoint}-center {
+      text-align: center !important;
+    }
+    .text-#{$breakpoint}-right {
+      text-align: right !important;
+    }
+  }
+}

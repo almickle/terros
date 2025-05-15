@@ -1,0 +1,86 @@
+// Spacing Utilities
+// Generates margin and padding utility classes based on the spacing scale
+
+@use 'variables' as *;
+
+// Generate margin and padding utilities
+@each $size, $value in $spacing-sizes {
+  // Margin utilities
+  .m-#{$size} {
+    margin: $value !important;
+  }
+  .mx-#{$size} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  .my-#{$size} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+  .mt-#{$size} {
+    margin-top: $value !important;
+  }
+  .mr-#{$size} {
+    margin-right: $value !important;
+  }
+  .mb-#{$size} {
+    margin-bottom: $value !important;
+  }
+  .ml-#{$size} {
+    margin-left: $value !important;
+  }
+
+  // Padding utilities
+  .p-#{$size} {
+    padding: $value !important;
+  }
+  .px-#{$size} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .py-#{$size} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+  .pt-#{$size} {
+    padding-top: $value !important;
+  }
+  .pr-#{$size} {
+    padding-right: $value !important;
+  }
+  .pb-#{$size} {
+    padding-bottom: $value !important;
+  }
+  .pl-#{$size} {
+    padding-left: $value !important;
+  }
+}
+
+// Negative margins (for flexbox and grid alignment)
+@each $size, $value in $spacing-sizes {
+  @if $size != '0' {
+    .-m-#{$size} {
+      margin: -$value !important;
+    }
+    .-mx-#{$size} {
+      margin-left: -$value !important;
+      margin-right: -$value !important;
+    }
+    .-my-#{$size} {
+      margin-top: -$value !important;
+      margin-bottom: -$value !important;
+    }
+    .-mt-#{$size} {
+      margin-top: -$value !important;
+    }
+    .-mr-#{$size} {
+      margin-right: -$value !important;
+    }
+    .-mb-#{$size} {
+      margin-bottom: -$value !important;
+    }
+    .-ml-#{$size} {
+      margin-left: -$value !important;
+    }
+  }
+}

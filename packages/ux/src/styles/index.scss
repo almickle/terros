@@ -1,0 +1,15 @@
+// Terros Design System - Main SCSS Entry Point
+// This file imports all the SCSS modules
+
+// 1. Configuration and helpers
+@use 'variables' as *;
+@use 'colors' as *;
+@use 'spacing' as *;
+@use 'mixins' as *;
+@use 'typography' as *;
+
+// 2. Base styles
+@use 'base';
+
+// 3. Utilities and helper classes
+@use 'utilities' as *;

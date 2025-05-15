@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Terros Design System - Example App" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Terros Design System - Example</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      /* Prevent FOUC and set initial theme */
+      :root {
+        color-scheme: light dark;
+      }
+      
+      body {
+        visibility: hidden;
+        opacity: 0;
+        background-color: var(--color-background, #ffffff);
+        color: var(--color-text, #111827);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      body.loaded {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      @media (prefers-color-scheme: dark) {
+        html:not([data-theme="light"]) {
+          color-scheme: dark;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+    <script>
+      // Set initial theme based on system preference if no theme is set
+      (function() {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        const html = document.documentElement;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          html.setAttribute('data-theme', 'dark');
+          document.body.classList.add('dark');
+        } else {
+          html.setAttribute('data-theme', 'light');
+          document.body.classList.remove('dark');
+        }
+        
+        // Add loaded class when page is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+          document.body.classList.add('loaded');
+        });
+      })();
+    </script>
+  </body>
+</html>

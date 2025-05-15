@@ -1,0 +1,19 @@
+# Dependencies
+**/node_modules
+**/.next
+**/dist
+**/build
+**/.moon/cache
+**/.git
+**/.github
+**/.vscode
+**/.idea
+*.md
+*.mdx
+*.svg
+*.log
+*.lock
+*.min.*
+*.d.ts
+.DS_Store
+.env*.local

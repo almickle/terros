@@ -1,0 +1,481 @@
+// Import dependencies
+@use 'sass:map';
+@use 'variables' as *;
+@use 'typography' as *;
+@use 'colors' as *;
+
+// Box sizing rules
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Remove default margin and padding
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+// Set core body defaults
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: map.get($line-heights, 'normal');
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+// Remove list styles on ul, ol elements
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+// A elements that don't have a class get default styles
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+// Make images easier to work with
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+// Form controls base styles
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: map.get($border-radius, 'sm');
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+    outline: none;
+  }
+}
+
+// Checkbox and radio button styling
+[type='checkbox'],
+[type='radio'] {
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.5rem 0 0;
+  vertical-align: middle;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+  }
+}
+
+// Select dropdown styling
+select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+// Text inputs and textareas
+[type='text'],
+[type='email'],
+[type='password'],
+[type='number'],
+[type='tel'],
+[type='url'],
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  
+  &::placeholder {
+    color: var(--color-muted-foreground);
+    opacity: 1;
+  }
+}
+
+// Remove all animations and transitions for people that prefer not to see them
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Focus styles for keyboard navigation
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: map.get($border-radius, 'sm');
+  
+  /* Ensure form elements have consistent focus styles */
+  &.form-control:focus,
+  &[type='text']:focus,
+  &[type='email']:focus,
+  &[type='password']:focus,
+  &[type='number']:focus,
+  &[type='tel']:focus,
+  &[type='url']:focus,
+  &[type='search']:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2);
+  }
+}
+
+// Remove focus styles for mouse users
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Utility classes for focus visible
+.focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: map.get($border-radius, 'sm');
+}
+
+// Screen reader only utility
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Skip to main content link
+.skip-to-content {
+  position: absolute;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 0 0 0.25rem 0.25rem;
+  transform: translateY(-100%);
+  transition: transform 0.2s ease-in-out;
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+// Container
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: map.get($spacing-sizes, '4');
+  padding-right: map.get($spacing-sizes, '4');
+
+  @media (min-width: map.get($breakpoints, 'sm')) {
+    max-width: map.get($breakpoints, 'sm');
+  }
+
+  @media (min-width: map.get($breakpoints, 'md')) {
+    max-width: map.get($breakpoints, 'md');
+  }
+
+  @media (min-width: map.get($breakpoints, 'lg')) {
+    max-width: map.get($breakpoints, 'lg');
+  }
+
+  @media (min-width: map.get($breakpoints, 'xl')) {
+    max-width: map.get($breakpoints, 'xl');
+  }
+
+  @media (min-width: map.get($breakpoints, '2xl')) {
+    max-width: map.get($breakpoints, '2xl');
+  }
+}
+
+// Section
+.section {
+  padding: map.get($spacing-sizes, '8') 0;
+}
+
+// Spacing utilities
+@each $size, $value in $spacing-sizes {
+  // Margin
+  .m-#{$size} {
+    margin: $value !important;
+  }
+  .mx-#{$size} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  .my-#{$size} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+  .mt-#{$size} {
+    margin-top: $value !important;
+  }
+  .mr-#{$size} {
+    margin-right: $value !important;
+  }
+  .mb-#{$size} {
+    margin-bottom: $value !important;
+  }
+  .ml-#{$size} {
+    margin-left: $value !important;
+  }
+
+  // Padding
+  .p-#{$size} {
+    padding: $value !important;
+  }
+  .px-#{$size} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .py-#{$size} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+  .pt-#{$size} {
+    padding-top: $value !important;
+  }
+  .pr-#{$size} {
+    padding-right: $value !important;
+  }
+  .pb-#{$size} {
+    padding-bottom: $value !important;
+  }
+  .pl-#{$size} {
+    padding-left: $value !important;
+  }
+}
+
+// Display utilities
+.d-block {
+  display: block !important;
+}
+.d-inline {
+  display: inline !important;
+}
+.d-inline-block {
+  display: inline-block !important;
+}
+.d-flex {
+  display: flex !important;
+}
+.d-inline-flex {
+  display: inline-flex !important;
+}
+.d-grid {
+  display: grid !important;
+}
+.d-none {
+  display: none !important;
+}
+
+// Flex utilities
+.flex-row {
+  flex-direction: row !important;
+}
+.flex-column {
+  flex-direction: column !important;
+}
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+.flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+.items-start {
+  align-items: flex-start !important;
+}
+.items-end {
+  align-items: flex-end !important;
+}
+.items-center {
+  align-items: center !important;
+}
+.items-baseline {
+  align-items: baseline !important;
+}
+.items-stretch {
+  align-items: stretch !important;
+}
+.justify-start {
+  justify-content: flex-start !important;
+}
+.justify-end {
+  justify-content: flex-end !important;
+}
+.justify-center {
+  justify-content: center !important;
+}
+.justify-between {
+  justify-content: space-between !important;
+}
+.justify-around {
+  justify-content: space-around !important;
+}
+.justify-evenly {
+  justify-content: space-evenly !important;
+}
+.flex-1 {
+  flex: 1 1 0% !important;
+}
+.flex-auto {
+  flex: 1 1 auto !important;
+}
+.flex-initial {
+  flex: 0 1 auto !important;
+}
+.flex-none {
+  flex: none !important;
+}
+
+// Grid utilities
+.grid {
+  display: grid !important;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+}
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+}
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+}
+.gap-0 {
+  gap: 0 !important;
+}
+.gap-1 {
+  gap: map.get($spacing-sizes, '1') !important;
+}
+.gap-2 {
+  gap: map.get($spacing-sizes, '2') !important;
+}
+.gap-3 {
+  gap: map.get($spacing-sizes, '3') !important;
+}
+.gap-4 {
+  gap: map.get($spacing-sizes, '4') !important;
+}
+.gap-5 {
+  gap: map.get($spacing-sizes, '5') !important;
+}
+.gap-6 {
+  gap: map.get($spacing-sizes, '6') !important;
+}
+.gap-8 {
+  gap: map.get($spacing-sizes, '8') !important;
+}
+
+// Border utilities
+.rounded {
+  border-radius: map.get($border-radius, 'md') !important;
+}
+.rounded-sm {
+  border-radius: map.get($border-radius, 'sm') !important;
+}
+.rounded-md {
+  border-radius: map.get($border-radius, 'md') !important;
+}
+.rounded-lg {
+  border-radius: map.get($border-radius, 'lg') !important;
+}
+.rounded-xl {
+  border-radius: map.get($border-radius, 'xl') !important;
+}
+.rounded-full {
+  border-radius: map.get($border-radius, 'full') !important;
+}
+.rounded-none {
+  border-radius: 0 !important;
+}
+
+// Shadow utilities
+@each $size, $value in $box-shadow {
+  .shadow-#{$size} {
+    box-shadow: #{$value} !important;
+  }
+}
+
+// Visibility utilities
+.visible {
+  visibility: visible !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+
+// Opacity utilities
+@for $i from 0 through 10 {
+  .opacity-#{$i * 10} {
+    opacity: $i * 0.1 !important;
+  }
+}
+
+// Z-index utilities
+.z-0 {
+  z-index: 0 !important;
+}
+.z-10 {
+  z-index: 10 !important;
+}
+.z-20 {
+  z-index: 20 !important;
+}
+.z-30 {
+  z-index: 30 !important;
+}
+.z-40 {
+  z-index: 40 !important;
+}
+.z-50 {
+  z-index: 50 !important;
+}
+.z-auto {
+  z-index: auto !important;
+}

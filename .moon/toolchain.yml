@@ -1,0 +1,27 @@
+# Toolchain configuration
+# https://moonrepo.dev/docs/config/toolchain
+
+# Node.js configuration
+node:
+  # The version of Node.js that is required for this project
+  version: '24.0.0'
+
+  # The package manager to use (must be one of: bun, npm, pnpm, yarn)
+  packageManager: 'pnpm'
+  pnpm:
+    version: '8.15.0'
+
+  # Whether to add the Node.js version constraint to package.json
+  addEnginesConstraint: true
+
+  # Whether to dedupe dependencies when the lockfile changes
+  dedupeOnLockfileChange: false
+
+  # The format for dependency versions in package.json
+  dependencyVersionFormat: 'workspace-caret'
+
+  # Whether to sync workspace dependencies
+  syncProjectWorkspaceDependencies: true
+
+  # Whether to sync version manager configuration
+  syncVersionManagerConfig: 'nvm'

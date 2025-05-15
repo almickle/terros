@@ -1,0 +1,31 @@
+{
+  "name": "terros",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "24.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "moon :dev",
+    "build": "moon :build",
+    "preview": "moon :preview",
+    "lint": "moon :lint",
+    "format": "moon :format",
+    "type-check": "moon :type-check",
+    "ui:dev": "cd packages/ui/examples && pnpm dev",
+    "ui:build": "cd packages/ui/examples && pnpm build",
+    "ui:preview": "cd packages/ui/examples && pnpm preview",
+    "ui:type-check": "cd packages/ui/examples && pnpm type-check",
+    "ui:lint": "cd packages/ui/examples && pnpm lint"
+  },
+  "devDependencies": {
+    "@moonrepo/cli": "^1.22.5",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}

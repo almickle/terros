@@ -1,0 +1,354 @@
+// Import dependencies
+@use 'sass:map';
+@use 'variables' as *;
+@use 'spacing' as *;
+
+// Font Families
+$font-family-sans:
+  'Inter',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  'Helvetica Neue',
+  Arial,
+  sans-serif !default;
+$font-family-mono: 'Roboto Mono', 'Courier New', Courier, monospace !default;
+$font-family-serif: Georgia, 'Times New Roman', Times, serif !default;
+
+// Font Weights
+$font-weights: (
+  'thin': 100,
+  'extralight': 200,
+  'light': 300,
+  'normal': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+  'extrabold': 800,
+  'black': 900,
+) !default;
+
+// Line Heights
+$line-heights: (
+  'none': 1,
+  'tight': 1.25,
+  'snug': 1.375,
+  'normal': 1.5,
+  'relaxed': 1.625,
+  'loose': 2,
+) !default;
+
+// Letter Spacing
+$letter-spacing: (
+  'tighter': -0.05em,
+  'tight': -0.025em,
+  'normal': 0,
+  'wide': 0.025em,
+  'wider': 0.05em,
+  'widest': 0.1em,
+) !default;
+
+// Font Sizes
+$font-sizes: (
+  'xs': (
+    'size': 0.75rem,
+    // 12px
+    'line-height': map.get($line-heights, 'normal'),
+    'letter-spacing': 0.025em,
+  ),
+  'sm': (
+    'size': 0.875rem,
+    // 14px
+    'line-height': map.get($line-heights, 'normal'),
+    'letter-spacing': 0.01em,
+  ),
+  'base': (
+    'size': 1rem,
+    // 16px
+    'line-height': map.get($line-heights, 'normal'),
+    'letter-spacing': 0,
+  ),
+  'lg': (
+    'size': 1.125rem,
+    // 18px
+    'line-height': map.get($line-heights, 'relaxed'),
+    'letter-spacing': -0.01em,
+  ),
+  'xl': (
+    'size': 1.25rem,
+    // 20px
+    'line-height': map.get($line-heights, 'relaxed'),
+    'letter-spacing': -0.02em,
+  ),
+  '2xl': (
+    'size': 1.5rem,
+    // 24px
+    'line-height': map.get($line-heights, 'tight'),
+    'letter-spacing': -0.025em,
+  ),
+  '3xl': (
+    'size': 1.875rem,
+    // 30px
+    'line-height': map.get($line-heights, 'tight'),
+    'letter-spacing': -0.03em,
+  ),
+  '4xl': (
+    'size': 2.25rem,
+    // 36px
+    'line-height': map.get($line-heights, 'tight'),
+    'letter-spacing': -0.04em,
+  ),
+  '5xl': (
+    'size': 3rem,
+    // 48px
+    'line-height': map.get($line-heights, 'tight'),
+    'letter-spacing': -0.05em,
+  ),
+  '6xl': (
+    'size': 3.75rem,
+    // 60px
+    'line-height': map.get($line-heights, 'tight'),
+    'letter-spacing': -0.06em,
+  ),
+) !default;
+
+// Headings
+$headings: (
+  'h1': map.get($font-sizes, '5xl'),
+  'h2': map.get($font-sizes, '4xl'),
+  'h3': map.get($font-sizes, '3xl'),
+  'h4': map.get($font-sizes, '2xl'),
+  'h5': map.get($font-sizes, 'xl'),
+  'h6': map.get($font-sizes, 'lg'),
+) !default;
+
+// Base Typography
+:root {
+  // Font family
+  --font-sans: #{$font-family-sans};
+  --font-mono: #{$font-family-mono};
+  --font-serif: #{$font-family-serif};
+
+  // Base font settings
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: map.get($line-heights, 'normal');
+  font-weight: map.get($font-weights, 'normal');
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings
+@each $heading, $styles in $headings {
+  #{$heading},
+  .#{$heading} {
+    font-size: map.get($styles, 'size');
+    line-height: map.get($styles, 'line-height');
+    font-weight: map.get($font-weights, 'bold');
+    margin-top: 0;
+    margin-bottom: map.get($spacing-sizes, '4');
+    color: var(--color-text);
+
+    @if map.has-key($styles, 'letter-spacing') {
+      letter-spacing: map.get($styles, 'letter-spacing');
+    }
+  }
+}
+
+// Text utilities
+@each $size, $styles in $font-sizes {
+  .text-#{$size} {
+    font-size: map.get($styles, 'size');
+    line-height: map.get($styles, 'line-height');
+
+    @if map.has-key($styles, 'letter-spacing') {
+      letter-spacing: map.get($styles, 'letter-spacing');
+    }
+  }
+}
+
+// Font weight utilities
+@each $name, $weight in $font-weights {
+  .font-#{$name} {
+    font-weight: $weight;
+  }
+}
+
+// Line height utilities
+@each $name, $height in $line-heights {
+  .leading-#{$name} {
+    line-height: $height;
+  }
+}
+
+// Letter spacing utilities
+@each $name, $spacing in $letter-spacing {
+  .tracking-#{$name} {
+    letter-spacing: $spacing;
+  }
+}
+
+// Text colors
+.text-primary {
+  color: var(--color-primary);
+}
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+.text-muted {
+  color: var(--color-text-muted);
+}
+.text-success {
+  color: var(--color-success);
+}
+.text-warning {
+  color: var(--color-warning);
+}
+.text-danger {
+  color: var(--color-danger);
+}
+.text-info {
+  color: var(--color-info);
+}
+
+// Text alignment
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+
+// Text transforms
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.normal-case {
+  text-transform: none;
+}
+
+// Text decoration
+.underline {
+  text-decoration: underline;
+}
+.line-through {
+  text-decoration: line-through;
+}
+.no-underline {
+  text-decoration: none;
+}
+
+// Whitespace and overflow
+.whitespace-normal {
+  white-space: normal;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.whitespace-pre {
+  white-space: pre;
+}
+.whitespace-pre-line {
+  white-space: pre-line;
+}
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+.break-words {
+  word-wrap: break-word;
+}
+.break-all {
+  word-break: break-all;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Lists
+ul,
+ol {
+  padding-left: 1.5em;
+  margin-top: 0;
+  margin-bottom: map.get($spacing-sizes, '4');
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+// Links
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Code
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+code {
+  padding: 0.2em 0.4em;
+  background-color: var(--color-neutral-100);
+  border-radius: map.get($border-radius, 'sm');
+  color: var(--color-danger);
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: map.get($spacing-sizes, '4');
+  padding: map.get($spacing-sizes, '4');
+  background-color: var(--color-neutral-100);
+  border-radius: map.get($border-radius, 'md');
+  overflow-x: auto;
+
+  code {
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+  }
+}
+
+// Blockquote
+blockquote {
+  margin: 0 0 map.get($spacing-sizes, '4');
+  padding: 0 0 0 map.get($spacing-sizes, '4');
+  border-left: 4px solid var(--color-border);
+  font-style: italic;
+  color: var(--color-text-muted);
+}

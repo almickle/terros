@@ -1,0 +1,24 @@
+workspace:
+  name: 'terros'
+  description: 'Terros monorepo'
+  maintainers: ['dev@terros.digital']
+
+  defaultTaskConfig:
+    options:
+      cache: true
+      persistent: false
+      runInCI: true
+
+    inputs:
+      - '**/*'
+      - '!**/node_modules/**'
+      - '!**/build/**'
+
+cache:
+  lifetime: '3 days'
+  archivableTargets: ['build', 'bundle']
+  implicitDeps: ['^:build', '^:test']
+  implicitInputs:
+    - '^:run(\\w+)?'
+    - '^:lint'
+    - '^:format'

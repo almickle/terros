@@ -1,0 +1,42 @@
+type: 'application'
+language: 'typescript'
+
+workspace:
+  inheritedTasks:
+    exclude: ['build', 'format']
+
+tasks:
+  dev:
+    command: 'vite'
+    inputs:
+      - '**/*'
+      - '!**/node_modules/**'
+      - '!**/build/**'
+    options:
+      cache: false
+      persistent: true
+      runInCI: false
+
+  build:
+    command: 'vite build'
+    inputs:
+      - '**/*'
+      - '!**/node_modules/**'
+      - '!**/build/**'
+    outputs:
+      - 'build/**/*'
+    options:
+      cache: true
+      runInCI: true
+    deps:
+      - '^:build'
+
+  preview:
+    command: 'vite preview'
+    deps:
+      - 'build'
+    inputs:
+      - 'build/**/*'
+    options:
+      cache: false
+      runInCI: false

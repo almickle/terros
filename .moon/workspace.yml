@@ -1,0 +1,7 @@
+# Moon workspace configuration
+# https://moonrepo.dev/docs/config/workspace
+
+# Project structure
+projects:
+  - 'apps/*'
+  - 'packages/*'
