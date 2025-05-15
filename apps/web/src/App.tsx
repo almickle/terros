@@ -1,47 +1,85 @@
-import { useState } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
 
-export default function App() {
-  const [count, setCount] = useState(0);
+import { ThemeProvider as UIThemeProvider, lightTheme, darkTheme } from '@terros/ui';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { Layout } from '@/components';
+import CompanyPage from '@/pages/CompanyPage';
+import DashboardPage from '@/pages/DashboardPage';
+import Lander from '@/pages/Lander';
+import ProductPage from '@/pages/ProductPage';
+
+type ThemeContextType = {
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+  toggleTheme: () => void;
+};
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
+};
+
+// Custom theme provider that handles theme persistence and switching
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setThemeState] = useState<'light' | 'dark'>(
+    () => (localStorage.getItem('theme') as 'light' | 'dark') || 'light'
+  );
+
+  const setTheme = useCallback((theme: 'light' | 'dark') => {
+    setThemeState(theme);
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  }, [theme, setTheme]);
+
+  // Apply theme class to root element
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  // Memoize the theme object to prevent unnecessary re-renders
+  const currentTheme = useMemo(() => (theme === 'light' ? lightTheme : darkTheme), [theme]);
+
+  // Memoize the context value to prevent unnecessary re-renders
+  const contextValue = useMemo(
+    () => ({
+      theme,
+      setTheme,
+      toggleTheme,
+    }),
+    [theme, setTheme, toggleTheme]
+  );
 
   return (
-    <div className='min-h-screen flex flex-col'>
-      <header className='bg-white dark:bg-gray-800 shadow-sm'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4'>
-          <h1 className='text-2xl font-bold text-gray-900 dark:text-white'>Terros</h1>
-        </div>
-      </header>
-
-      <main className='flex-grow'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-          <div className='text-center'>
-            <h2 className='text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl sm:tracking-tight lg:text-6xl'>
-              Welcome to Terros
-            </h2>
-            <p className='mt-5 max-w-xl mx-auto text-xl text-gray-500 dark:text-gray-300'>
-              A modern React application with TypeScript, Tailwind CSS, and Vite
-            </p>
-
-            <div className='mt-8'>
-              <div className='inline-flex rounded-md shadow'>
-                <button onClick={() => setCount((count) => count + 1)} className='btn btn-primary'>
-                  Count is {count}
-                </button>
-              </div>
-              <p className='mt-3 text-sm text-gray-500 dark:text-gray-400'>
-                Edit <code className='font-mono font-medium'>src/App.tsx</code> and save to test HMR
-              </p>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <footer className='bg-white dark:bg-gray-800 mt-auto'>
-        <div className='max-w-7xl mx-auto py-6 px-4 overflow-hidden sm:px-6 lg:px-8'>
-          <p className='text-center text-base text-gray-500 dark:text-gray-400'>
-            &copy; {new Date().getFullYear()} Terros. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+    <ThemeContext.Provider value={contextValue}>
+      <UIThemeProvider theme={currentTheme}>{children}</UIThemeProvider>
+    </ThemeContext.Provider>
   );
 }
+
+export function App() {
+  return (
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Lander />} />
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="product" element={<ProductPage />} />
+            <Route path="company" element={<CompanyPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  );
+}
+
+export default App;

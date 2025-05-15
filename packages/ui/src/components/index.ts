@@ -1,7 +1,5 @@
-// Button
+// UI Components
 export * from './Button';
-
-// Card
 export * from './Card';
 
 // Form Components
@@ -11,3 +9,6 @@ export * from './Radio';
 export * from './Switch';
 export * from './Select';
 export * from './Textarea';
+
+// Feedback Components
+export * from './Spinner';
