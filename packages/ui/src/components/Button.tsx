@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { getButtonStyles } from './button-variants';
+import { Spinner } from './Spinner';
 import { usePressEffect } from './usePressEffect';
 
 import { useTheme } from '@/theme/ThemeProvider';
@@ -102,28 +103,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const spinnerStyles: React.CSSProperties = {
       display: 'inline-flex',
       alignItems: 'center',
-      justifyContent: 'center',
       marginRight: theme.spacing?.sm || '8px',
-      width: '1em',
-      height: '1em',
       flexShrink: 0,
-    };
-
-    const spinnerSvgStyle: React.CSSProperties = {
-      display: 'block',
-      width: '100%',
-      height: '100%',
-      animation: 'spin 0.8s linear infinite',
-    };
-
-    const spinnerTrackStyle: React.CSSProperties = {
-      opacity: 0.25,
-    };
-
-    const spinnerIndicatorStyle: React.CSSProperties = {
-      opacity: 0.75,
-      transformOrigin: 'center',
-      animation: 'spin 1.5s linear infinite',
     };
 
     const iconStyles: React.CSSProperties = {
@@ -151,34 +132,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={loading || disabled}
         aria-busy={loading}
       >
-        {loading && (
-          <span style={spinnerStyles}>
-            <svg
-              width='1em'
-              height='1em'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-              style={spinnerSvgStyle}
-            >
-              <circle
-                cx='12'
-                cy='12'
-                r='10'
-                stroke='currentColor'
-                strokeWidth='4'
-                style={spinnerTrackStyle}
-              />
-              <path
-                d='M12 2a10 10 0 0 1 10 10'
-                stroke='currentColor'
-                strokeWidth='4'
-                strokeLinecap='round'
-                style={spinnerIndicatorStyle}
-              />
-            </svg>
-          </span>
-        )}
+        {loading && <Spinner style={spinnerStyles} />}
         {leftIcon && !loading && <span style={iconStyles}>{leftIcon}</span>}
         {children}
         {rightIcon && <span style={rightIconStyles}>{rightIcon}</span>}

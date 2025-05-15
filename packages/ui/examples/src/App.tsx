@@ -23,7 +23,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const html = document.documentElement;
     const themeToApply = isDarkMode ? darkTheme : lightTheme;
-    
+
     // Update HTML attributes and classes
     if (isDarkMode) {
       html.classList.add('dark');
@@ -32,7 +32,7 @@ const App: React.FC = () => {
       html.classList.remove('dark');
       html.setAttribute('data-theme', 'light');
     }
-    
+
     // Update CSS custom properties
     const root = document.documentElement;
     // Set both standard and prefixed CSS variables for better compatibility
@@ -44,10 +44,10 @@ const App: React.FC = () => {
     root.style.setProperty('--color-text', themeToApply.colors.text.primary);
     root.style.setProperty('--text-secondary', themeToApply.colors.text.secondary);
     root.style.setProperty('--color-text-secondary', themeToApply.colors.text.secondary);
-    
+
     // Update the theme in state
     setTheme(themeToApply);
-    
+
     // Save preference to localStorage
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);
@@ -55,11 +55,11 @@ const App: React.FC = () => {
   // Listen for system color scheme changes and apply theme
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     const applyTheme = (isDark: boolean) => {
       const themeToApply = isDark ? darkTheme : lightTheme;
       const root = document.documentElement;
-      
+
       // Update HTML attributes and classes
       if (isDark) {
         root.classList.add('dark');
@@ -68,7 +68,7 @@ const App: React.FC = () => {
         root.classList.remove('dark');
         root.setAttribute('data-theme', 'light');
       }
-      
+
       // Update CSS custom properties
       root.style.setProperty('--background', themeToApply.colors.background.default);
       root.style.setProperty('--color-background', themeToApply.colors.background.default);
@@ -78,15 +78,15 @@ const App: React.FC = () => {
       root.style.setProperty('--color-text', themeToApply.colors.text.primary);
       root.style.setProperty('--text-secondary', themeToApply.colors.text.secondary);
       root.style.setProperty('--color-text-secondary', themeToApply.colors.text.secondary);
-      
+
       // Update the theme in state
       setTheme(themeToApply);
     };
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
       const newIsDark = e.matches;
       setIsDarkMode(newIsDark);
-      
+
       // Only update theme if there's no saved preference
       if (!localStorage.getItem('theme')) {
         applyTheme(newIsDark);
@@ -152,10 +152,10 @@ const App: React.FC = () => {
   const toggleTheme = () => {
     const newIsDark = !isDarkMode;
     setIsDarkMode(newIsDark);
-    
+
     // Update localStorage with the new theme preference
     localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
-    
+
     // Update the data-theme attribute and dark class
     const html = document.documentElement;
     if (newIsDark) {
@@ -165,7 +165,7 @@ const App: React.FC = () => {
       html.setAttribute('data-theme', 'light');
       html.classList.remove('dark');
     }
-    
+
     // Apply the new theme
     setTheme(newIsDark ? darkTheme : lightTheme);
   };
@@ -240,17 +240,7 @@ const App: React.FC = () => {
                 alignItems: 'center',
                 gap: '0.5rem',
               }}
-            >
-              {isDarkMode ? (
-                <>
-                  <span>☀️</span> Light Mode
-                </>
-              ) : (
-                <>
-                  <span>🌙</span> Dark Mode
-                </>
-              )}
-            </Button>
+            ></Button>
             <div
               style={{
                 display: 'flex',
