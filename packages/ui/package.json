@@ -18,7 +18,7 @@
     "package.json"
   ],
   "scripts": {
-    "build": "vite build && pnpm exec tsc --emitDeclarationOnly",
+    "build": "vite build",
     "dev": "vite",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
 
 import { ThemeProvider as UIThemeProvider, lightTheme, darkTheme } from '@terros/ui';
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { Layout } from '@/components';
