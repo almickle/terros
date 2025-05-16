@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "pnpm exec vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "test": "vitest"
