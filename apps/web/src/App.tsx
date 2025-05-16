@@ -16,7 +16,12 @@ type ThemeContextType = {
   toggleTheme: () => void;
 };
 
+type MobileContextType = {
+  isMobile: boolean;
+};
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const MobileContext = createContext<MobileContextType | undefined>(undefined);
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
@@ -26,8 +31,31 @@ export const useTheme = () => {
   return context;
 };
 
+export const useMobile = () => {
+  const context = useContext(MobileContext);
+  if (context === undefined) {
+    throw new Error('useMobile must be used within a ThemeProvider');
+  }
+  return context;
+};
+
 // Custom theme provider that handles theme persistence and switching
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const mobileValue = useMemo(() => ({ isMobile }), [isMobile]);
+
   const [theme, setThemeState] = useState<'light' | 'dark'>(
     () => (localStorage.getItem('theme') as 'light' | 'dark') || 'dark'
   );
@@ -55,14 +83,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       theme,
       setTheme,
       toggleTheme,
+      currentTheme,
     }),
-    [theme, setTheme, toggleTheme]
+    [theme, setTheme, toggleTheme, currentTheme]
   );
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      <UIThemeProvider theme={currentTheme}>{children}</UIThemeProvider>
-      <Analytics />
+      <MobileContext.Provider value={mobileValue}>
+        <UIThemeProvider theme={currentTheme}>{children}</UIThemeProvider>
+        <Analytics />
+      </MobileContext.Provider>
     </ThemeContext.Provider>
   );
 }

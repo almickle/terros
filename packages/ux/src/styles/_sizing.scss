@@ -1,0 +1,88 @@
+// Size utilities
+
+// Width utilities
+@each $size in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96) {
+  .w-#{$size} {
+    width: #{$size * 0.25}rem; // 1rem = 16px, so 0.25rem = 4px
+  }
+}
+
+// Height utilities
+@each $size in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96) {
+  .h-#{$size} {
+    height: #{$size * 0.25}rem; // 1rem = 16px, so 0.25rem = 4px
+  }
+}
+
+// Full width/height utilities
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-three-quarters {
+  width: 75%;
+}
+
+.h-three-quarters {
+  height: 75%;
+}
+
+.w-two-thirds {
+  width: 66.666666%;
+}
+
+.h-two-thirds {
+  height: 66.666666%;
+}
+
+.w-half {
+  width: 50%;
+}
+
+.h-half {
+  height: 50%;
+}
+
+.w-third {
+  width: 33.333333%;
+}
+
+.h-third {
+  height: 33.333333%;
+}
+
+.w-quarter {
+  width: 25%;
+}
+
+.h-quarter {
+  height: 25%;
+}
+
+// Auto width/height utilities
+.w-auto {
+  width: auto;
+}
+
+.h-auto {
+  height: auto;
+}
+
+// // Responsive sizing utilities
+// @each $breakpoint, $value in $breakpoints {
+//   @include respond-to($breakpoint) {
+//     @each $size in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96) {
+//       .w-#{$breakpoint}-#{$size} {
+//         width: #{$size * 0.25}rem;
+//       }
+      
+//       .h-#{$breakpoint}-#{$size} {
+//         height: #{$size * 0.25}rem;
+//       }
+//     }
+//   }
+// }

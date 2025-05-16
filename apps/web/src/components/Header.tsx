@@ -1,5 +1,9 @@
+import { useState } from 'react';
+
+import { HamburgerButton } from '@terros/ui';
 import { Link } from 'react-router-dom';
 
+import { useMobile } from '@/App';
 import { Navigation } from '@/components/Navigation';
 import { UserProfile } from '@/components/UserProfile';
 
@@ -18,34 +22,40 @@ interface HeaderProps {
 }
 
 export function Header({ className = '' }: HeaderProps) {
+  const { isMobile } = useMobile();
   // TODO: Replace with actual auth state
   const isAuthenticated = false;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogin = () => {
     console.log('Login clicked');
+    setIsMenuOpen(false);
     // TODO: Implement login logic
   };
 
   const handleSignup = () => {
     console.log('Sign up clicked');
+    setIsMenuOpen(false);
     // TODO: Implement signup logic
   };
 
   const handleLogout = () => {
     console.log('Logout clicked');
+    setIsMenuOpen(false);
     // TODO: Implement logout logic
   };
 
   const handleProfileClick = () => {
     console.log('Profile clicked');
+    setIsMenuOpen(false);
     // TODO: Navigate to profile
   };
 
   return (
     <header className={`header ${className}`}>
-      <div className="header-container">
+      <div className="header-container mx-4">
         <Logo />
-        <Navigation />
+        {!isMobile && <Navigation />}
         <div className="d-flex items-center">
           <UserProfile
             isAuthenticated={isAuthenticated}
@@ -60,6 +70,13 @@ export function Header({ className = '' }: HeaderProps) {
             onLogout={handleLogout}
             onProfileClick={handleProfileClick}
           />
+          {isMobile && (
+            <HamburgerButton
+              isOpen={isMenuOpen}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="ml-4 md:hidden"
+            />
+          )}
         </div>
       </div>
     </header>

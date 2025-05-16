@@ -7,6 +7,8 @@ export function Lander() {
       <Hero
         title="Terros is a self-contained ecosystem, engineered for balance"
         subtitle="Nature meets technology. A living ecosystem at your fingertips."
+        mobileTitle="Engineered balance. Living design."
+        mobileSubtitle="Terros is a self-contained ecosystem, engineered for balance."
       />
       <div className="w-full flex-row items-center justify-around" style={{ height: '1000px' }}>
         <OrganicTileGrid />
