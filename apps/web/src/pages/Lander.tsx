@@ -1,5 +1,6 @@
 import { Hero } from '@/components/Hero';
-import { OrganicTileGrid } from '@/components/OrganicTileGrid';
+import { Splash } from '@/components/Splash';
+// import { OrganicTileGrid } from '@/components/OrganicTileGrid';
 
 export function Lander() {
   return (
@@ -8,13 +9,11 @@ export function Lander() {
         title="Terros is a self-contained ecosystem, engineered for balance"
         subtitle="Nature meets technology. A living ecosystem at your fingertips."
         mobileTitle="Engineered balance. Living design."
-        mobileSubtitle="Terros is a self-contained ecosystem, engineered for balance."
+        mobileSubtitle="Nature meets technology. A living ecosystem at your fingertips."
       />
-      <div className="w-full flex-row items-center justify-around" style={{ height: '1000px' }}>
-        <OrganicTileGrid />
-        <div className="w-half">
-          <img src="terrarium.png" />
-        </div>
+      <div className="w-full flex-row items-center justify-around">
+        {/* <OrganicTileGrid /> */}
+        <Splash />
       </div>
     </div>
   );
