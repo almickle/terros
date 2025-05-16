@@ -22,7 +22,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "vite build",
+    "build": "pnpm exec vite build",
     "dev": "vite",
     "preview": "vite preview"
   },
