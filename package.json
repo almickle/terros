@@ -20,12 +20,11 @@
     "ui:build": "pnpm --filter @terros/ui/examples run build",
     "ui:preview": "pnpm --filter @terros/ui/examples run preview",
     "ui:type-check": "pnpm --filter @terros/ui/examples run type-check",
-    "ui:lint": "pnpm --filter @terros/ui/examples run lint"
-  },
-  "devDependencies": {
+    "ui:lint": "pnpm --filter @terros/ui/examples run lint",
     "@moonrepo/cli": "^1.22.5",
     "eslint": "^8.45.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0"
-  }
+  },
+  "devDependencies": {}
 }
