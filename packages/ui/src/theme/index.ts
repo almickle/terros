@@ -1,6 +1,3 @@
-// Import styles from the UX package
-import '@terros/ux/styles';
-
 // Re-export theme variables and utilities
 export * from './theme';
 
