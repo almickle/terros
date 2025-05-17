@@ -40,9 +40,18 @@
   padding: 0 1.5rem;
 }
 
+.tile:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.8);
+  background-color: var(--theme-primary-dark);
+}
+
 // Header
 .header {
   position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   top: 0;
   left: 0;
   right: 0;
@@ -52,15 +61,10 @@
   background-color: var(--theme-background);
 }
 
-.tile:hover {
-  transform: scale(1.2);
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.8);
-  background-color: var(--theme-primary-dark);
-}
-
 .header-container {
   max-width: 1440px;
   height: 100%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
