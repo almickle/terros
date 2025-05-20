@@ -1,0 +1,249 @@
+// Base styles
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #e0e0e0;
+  --font-family: 'Arial', sans-serif;
+  --level-header-color: #2c3e50;
+  --level-header-bg: #f5f5f5;
+  --divider-color: #ddd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Table of Contents styles
+.table-of-contents {
+  position: sticky;
+  top: 2rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+
+  .assembly-level-group {
+    margin-bottom: 1.5rem;
+    
+    h3 {
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        a {
+          color: var(--text-color);
+          text-decoration: none;
+          display: block;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: var(--secondary-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Assembly section styles
+.assembly-level {
+  margin-bottom: 3rem;
+  
+  .level-header {
+    background-color: var(--level-header-bg);
+    color: var(--level-header-color);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.8rem;
+    border-bottom: 3px solid var(--primary-color);
+    
+    &:before {
+      content: "";
+      display: block;
+      height: 2px;
+      background: var(--primary-color);
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    
+    &:after {
+      content: "";
+      display: block;
+      height: 2px;
+      background: var(--primary-color);
+      width: 100%;
+      margin-top: 1rem;
+    }
+  }
+}
+
+.assembly-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+
+  h3 {
+    color: var(--primary-color);
+    margin: 1.5rem 0 1rem;
+    font-size: 1.2rem;
+  }
+
+  .components-list {
+    list-style: none;
+    padding-left: 1rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  .instructions-list {
+    counter-reset: step;
+    list-style: none;
+    padding-left: 1rem;
+
+    li {
+      margin-bottom: 1.5rem;
+      counter-increment: step;
+
+      &:before {
+        content: counter(step) ". ";
+        font-weight: bold;
+        color: var(--secondary-color);
+      }
+
+      p {
+        margin-bottom: 0.5rem;
+      }
+
+      .instruction-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-top: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+// Print styles
+@media print {
+  body {
+    padding: 0;
+  }
+
+  .app {
+    display: block;
+    grid-template-columns: none;
+  }
+
+  .assembly-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .table-of-contents {
+    display: block;
+    position: static;
+    margin-bottom: 2rem;
+    page-break-after: always;
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 1.5rem;
+      
+      li {
+        margin-bottom: 0.5rem;
+        
+        a {
+          text-decoration: none;
+          color: var(--text-color);
+          font-size: 0.95rem;
+          
+          &:hover {
+            color: var(--text-color); // Remove hover effect for print
+          }
+        }
+      }
+    }
+  }
+
+  .assembly-section {
+    box-shadow: none;
+    margin: 1rem 0;
+    page-break-inside: avoid;
+    page-break-before: always;
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
