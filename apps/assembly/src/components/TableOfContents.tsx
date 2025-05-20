@@ -24,7 +24,17 @@ export const TableOfContents = ({ assemblyGroups }: TableOfContentsProps) => {
           <ul>
             {assemblies.map((assembly, index) => (
               <li key={index}>
-                <a href={`#${assembly.designator}`}>
+                <a 
+                  href={`#${assembly.designator}`}
+                  className="toc-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const target = document.getElementById(assembly.designator);
+                    if (target) {
+                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                >
                   {assembly.designator}: {assembly.name}
                 </a>
               </li>

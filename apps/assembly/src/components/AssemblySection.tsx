@@ -11,10 +11,19 @@ export const AssemblySection = ({ assembly, level }: AssemblySectionProps) => {
   };
 
   return (
-    <section className="assembly-section">
-      <h2>
-        {getIndentation()} {assembly.designator}: {assembly.name}
-      </h2>
+    <section className="assembly-section" id={assembly.designator}>
+      <div className="assembly-header">
+        <h2>
+          {getIndentation()} {assembly.designator}: {assembly.name}
+        </h2>
+        <a 
+          href={`#${assembly.designator}`} 
+          className="header-anchor"
+          aria-label={`Link to ${assembly.designator}`}
+        >
+          #
+        </a>
+      </div>
 
       <h3>
         {level === 0 ? 'Components & Subassemblies' : 'Component'}
