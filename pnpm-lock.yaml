@@ -10,6 +10,9 @@ importers:
 
   apps/assembly:
     dependencies:
+      '@dagrejs/dagre':
+        specifier: ^1.1.4
+        version: 1.1.4
       '@react-sigma/core':
         specifier: ^5.0.2
         version: 5.0.2(graphology@0.25.4)(react@18.3.1)(sigma@3.0.1)
@@ -19,6 +22,9 @@ importers:
       '@react-sigma/layout-noverlap':
         specifier: ^5.0.2
         version: 5.0.2(graphology-layout-noverlap@0.4.2)(graphology@0.25.4)(react@18.3.1)(sigma@3.0.1)
+      '@sigma/edge-curve':
+        specifier: ^3.1.0
+        version: 3.1.0(sigma@3.0.1)
       '@types/d3':
         specifier: ^7.4.3
         version: 7.4.3
@@ -548,6 +554,17 @@ packages:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
+
+  /@dagrejs/dagre@1.1.4:
+    resolution: {integrity: sha512-QUTc54Cg/wvmlEUxB+uvoPVKFazM1H18kVHBQNmK2NbrDR5ihOCR6CXLnDSZzMcSQKJtabPUWridBOlJM3WkDg==}
+    dependencies:
+      '@dagrejs/graphlib': 2.2.4
+    dev: false
+
+  /@dagrejs/graphlib@2.2.4:
+    resolution: {integrity: sha512-mepCf/e9+SKYy1d02/UkvSy6+6MoyXhVxP8lLDfA7BPE1X1d4dR0sZznmbM8/XVJ1GPM+Svnx7Xj6ZweByWUkw==}
+    engines: {node: '>17.0.0'}
+    dev: false
 
   /@emnapi/core@1.4.3:
     resolution: {integrity: sha512-4m62DuCE07lw01soJwPiBGC0nAww0Q+RY70VZ+n49yDIO13yyinhbWCeNnaob0lakDtWQzSdtNWzJeOJt2ma+g==}
@@ -1290,6 +1307,14 @@ packages:
       string-argv: 0.3.2
     transitivePeerDependencies:
       - '@types/node'
+    dev: false
+
+  /@sigma/edge-curve@3.1.0(sigma@3.0.1):
+    resolution: {integrity: sha512-OFWkfAXEsm+X8l1K4K49cC0psB0gQ+gqxKA08HG5piNPdzrDZ5gG9Gza6htZ5AirOVwd/4/uq/gPpD5En+H+3Q==}
+    peerDependencies:
+      sigma: '>=3.0.0-beta.10'
+    dependencies:
+      sigma: 3.0.1(graphology-types@0.24.8)
     dev: false
 
   /@sinclair/typebox@0.27.8:
