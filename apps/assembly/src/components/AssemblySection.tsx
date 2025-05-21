@@ -16,8 +16,8 @@ export const AssemblySection = ({ assembly, level }: AssemblySectionProps) => {
         <h2>
           {getIndentation()} {assembly.designator}: {assembly.name}
         </h2>
-        <a 
-          href={`#${assembly.designator}`} 
+        <a
+          href={`#${assembly.designator}`}
           className="header-anchor"
           aria-label={`Link to ${assembly.designator}`}
         >
@@ -25,9 +25,7 @@ export const AssemblySection = ({ assembly, level }: AssemblySectionProps) => {
         </a>
       </div>
 
-      <h3>
-        {level === 0 ? 'Components & Subassemblies' : 'Component'}
-      </h3>
+      <h3>{level === 0 ? 'Components & Subassemblies' : 'Component'}</h3>
       <ul className="components-list">
         {assembly.inputs.map((input, index) => (
           <li key={index}>
@@ -38,7 +36,7 @@ export const AssemblySection = ({ assembly, level }: AssemblySectionProps) => {
 
       <h3>Assembly Instructions</h3>
       <ol className="instructions-list">
-        {assembly.instructions.map((instruction, index) => (
+        {assembly.instructions?.map((instruction, index) => (
           <li key={index} className="instruction-item">
             <p>{instruction.instruction}</p>
             {instruction.image && (

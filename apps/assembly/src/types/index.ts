@@ -35,3 +35,13 @@ export interface Instruction {
   instruction: string;
   image?: string;
 }
+
+export interface AssemblyGroup {
+  level: string;
+  assemblies: Assembly[];
+}
+
+export interface AssemblyInput {
+  input: Assembly | Component;
+  quantity: number;
+}
